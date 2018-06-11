@@ -113,9 +113,16 @@ configure_file (
   @ONLY)
 
 install(TARGETS fmem
+  EXPORT fmem-config
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+
+install(
+  EXPORT fmem-config
+  FILE fmem-config.cmake
+  NAMESPACE fmem::
+  DESTINATION share/fmem/cmake)
 
 install(FILES
   ${PROJECT_BINARY_DIR}/gen/fmem.h
