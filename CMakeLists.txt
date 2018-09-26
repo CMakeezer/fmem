@@ -79,7 +79,9 @@ endif ()
 
 include_directories (include src ${PROJECT_BINARY_DIR}/gen)
 add_library (fmem ${SOURCES})
-
+target_include_directories(fmem PUBLIC
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+        $<INSTALL_INTERFACE:include/fmem>)
 get_property (FMEM_LIBTYPE
   TARGET fmem
   PROPERTY TYPE)
@@ -126,7 +128,7 @@ install(
 
 install(FILES
   ${PROJECT_BINARY_DIR}/gen/fmem.h
-  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+  DESTINATION include/fmem)
 
 include (CTest)
 
